@@ -309,17 +309,9 @@ def load_extractor(model_name, embedding_type, device=None):
         return esm_embeddings(esm_model, esm_batch_converter, embedding_type=embedding_type, device=device)
 
     elif model_name == 'ProtT5':
-        protT5_model_path = '../pLMs/protT5_model'
-        if not os.path.exists(protT5_model_path):
-            bert_tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False )
-            #protbert_model
-            bert_model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50")
-            bert_tokenizer.save_pretrained(protT5_model_path)
-            bert_model.save_pretrained(protT5_model_path)
-        else:
-            bert_tokenizer = T5Tokenizer.from_pretrained(protT5_model_path)
-            bert_model = T5EncoderModel.from_pretrained(protT5_model_path)
-        
+        bert_tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False )
+        bert_model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50")
+
         return bert_embeddings(bert_model, bert_tokenizer, embedding_type=embedding_type, device=device)
 
 
