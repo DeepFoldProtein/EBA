@@ -16,6 +16,7 @@ pip install fair-esm
 pip install transformers
 pip install SentencePiece
 ```
+If you want to use a GPU, you can follow the instructions at: https://pytorch.org/ in order to install the compatible pytorch version.
 
 ## Example
 
