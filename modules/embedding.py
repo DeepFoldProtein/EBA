@@ -4,6 +4,7 @@ import re
 import esm
 #from transformers import BertModel, BertTokenizer
 from transformers import T5Tokenizer, T5EncoderModel
+from transformers import logging
 
 class seq_feature_extractor_base:
     """Base class defining the interface for feature extraction based
@@ -309,6 +310,7 @@ def load_extractor(model_name, embedding_type, device=None):
         return esm_embeddings(esm_model, esm_batch_converter, embedding_type=embedding_type, device=device)
 
     elif model_name == 'ProtT5':
+        logging.set_verbosity_error()
         bert_tokenizer = T5Tokenizer.from_pretrained("Rostlab/prot_t5_xl_uniref50", do_lower_case=False )
         bert_model = T5EncoderModel.from_pretrained("Rostlab/prot_t5_xl_uniref50")
 
