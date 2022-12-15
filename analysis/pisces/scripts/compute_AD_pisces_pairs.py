@@ -5,7 +5,9 @@ import pickle
 
 ### inputs
 model = sys.argv[1]  #ProtT5, ESMb1
-p = int(sys.argv[2])
+
+### distance metric: 2=Euclidean
+p = 2
 
 ### defining paths
 working_dir = '../'

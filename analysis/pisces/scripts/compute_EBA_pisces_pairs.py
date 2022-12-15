@@ -8,10 +8,12 @@ import pickle
 
 ### inputs
 model = sys.argv[1]  #ProtT5, ESMb1
-gap_open_penality = float(sys.argv[2])
-gap_extend_penalty = float(sys.argv[3])
-l = float(sys.argv[4])
-p = int(sys.argv[5])
+
+### EBA inputs
+gap_open_penality = 0.0
+gap_extend_penalty = 0.0
+l = 1
+p = 2
 
 ### defining paths
 working_dir = '../'
