@@ -1,6 +1,9 @@
 # Embedding-based alignment (EBA)
 This repository contains the implementation of the EBA method as described in: ...
- 
+
+The folder [/analysis](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis) contains the data and the scripts necessary to reproduce the analysis performed in: ...
+
+
 Notice that the embedding extraction is independent from the EBA method, and any pLM can be used. However, to facilitate the application we provide a module (embedding.py) that allows the extraction of the per-residue embedding representations for the following pLMs: ProtT5 and ESM-b1.
  
 Note: In case of high dimensionality embeddings (such as ESM2), we suggest to run the EBA with the parameter l=0.1 or l=0.01 to avoid precision errors.
