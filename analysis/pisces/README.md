@@ -10,7 +10,7 @@ pip install matplotlib
 ```
 
 ### Compute embeddings
-The first step of the anlysis consists in computing the per-residue embeddings using the desired language model (ProtT5 or ESMb1). The necessary script can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/scripts). The embeddings will be stored in [/data/embeddings](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/data/embeddings).
+The first step of the analysis consists in computing the per-residue embeddings using the desired language model (ProtT5 or ESMb1). The necessary script can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/scripts). The embeddings will be stored in [/data/embeddings](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/data/embeddings).
 
 ```
 python save_embeddings.py ProtT5
