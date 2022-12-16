@@ -1,7 +1,7 @@
 # Embedding-based alignment (EBA)
-This repository contains the implementation of the EBA method as described in: ...
+This repository contains the implementation of the EBA method as described in: ["Embedding-based alignment: combining protein language models and alignment approaches to detect structural similarities in the twilight-zone"](https://doi.org/10.1101/2022.12.13.520313).
 
-The folder [/analysis](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis) contains the data and the scripts necessary to reproduce the analysis performed in: ...
+The folder [/analysis](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis) contains the data and the scripts necessary to reproduce the analysis performed in the paper.
 
 
 Notice that the embedding extraction is independent from the EBA method, and any pLM can be used. However, to facilitate the application we provide a module (embedding.py) that allows the extraction of the per-residue embedding representations for the following pLMs: ProtT5 and ESM-b1.
