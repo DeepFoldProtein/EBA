@@ -10,7 +10,7 @@ pip install matplotlib
 ```
 
 ### Compute embeddings
-The first step of the analysis consists in computing the per-residue embeddings using the desired language model (ProtT5 or ESMb1). The necessary script can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/scripts). The embeddings will be stored in [/data/embeddings](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/data/embeddings). The computational times of this process strongly benefits from the usage of a GPU.
+The first step of the analysis consists in computing the per-residue embeddings using the desired language model (ProtT5 or ESMb1). The necessary script can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/scripts). The embeddings will be stored in [/data/embeddings](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/data/embeddings). The computational times of this process strongly benefits from the usage of a GPU.
 
 ```
 python save_embeddings.py ProtT5
@@ -19,7 +19,7 @@ python save_embeddings.py ESMb1
 ```
 
 ### Compute EBA/AD scores
-It is then possible to compute the EBA and AD scores. The necessary scripts can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/scripts). The resulting scores will be stored in [/results](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/results).
+It is then possible to compute the EBA and AD scores. The necessary scripts can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/scripts). The resulting scores will be stored in [/results](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/results).
 ```
 python compute_EBA_pisces_pairs.py ProtT5
 python compute_EBA_pisces_pairs.py ESMb1
