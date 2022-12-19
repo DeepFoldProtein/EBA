@@ -1,6 +1,6 @@
 # PISCES analysis
 
-This folder contains the scripts and the data necessary to reproduce the results described in the paragraph 'EBA captures structural similarity in the twilight zone' of: ...
+This folder contains the scripts and the data necessary to reproduce the results described in the paragraph 'EBA captures structural similarity in the twilight zone' of: [https://doi.org/10.1101/2022.12.13.520313](https://doi.org/10.1101/2022.12.13.520313)
 
 ### Additional modules
 Install the following modules in order to run the notebook: 'EBA_pisces.ipynb'.
@@ -19,7 +19,7 @@ python save_embeddings.py ESMb1
 ```
 
 ### Compute EBA/AD scores
-Is then possible to compute the EBA and AD scores. The necessary scripts can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/scripts). The resulting scores will be stored in [/results](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/results).
+It is then possible to compute the EBA and AD scores. The necessary scripts can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/scripts). The resulting scores will be stored in [/results](https://git.scicore.unibas.ch/schwede/EBA/-/tree/891f59f9e5b1e726e21f3c00d07b6302a1bc6824/analysis/pisces/results).
 ```
 python compute_EBA_pisces_pairs.py ProtT5
 python compute_EBA_pisces_pairs.py ESMb1
