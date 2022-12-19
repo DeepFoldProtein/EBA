@@ -20,3 +20,6 @@ It is then possible to query a sequence of the test set against the ones in the 
 ```
 python query_against_lookupset.py 1q16B01 ProtT5
 ```
+
+### Accuracy
+Once the scores for all the 219 domains in the test are computed, you can use the notebook: 'CATH_annotation_transferring_test219.ipynb' for computing the label transferring accuracy. 
