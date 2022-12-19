@@ -26,22 +26,18 @@ p = 2
 ### path definition
 working_dir = '..'
 results_path = os.path.join(working_dir, 'results/EBA_{}'.format(model))
-test_embeddings_path = os.path.join(working_dir, 'data/embeddings/0_10_{}_test219_residue_embeddings.pt'.format(model))
-#test_average_embeddings_path = os.path.join(working_dir, 'data/embeddings/0_219_{}_test219_average_embeddings.pt'.format(model))
-# lookup1_embedding_path = os.path.join(working_dir, 'data/embeddings/0_24000_{}_lookup69k_residue_embeddings.pt'.format(model))
-# lookup2_embedding_path = os.path.join(working_dir, 'data/embeddings/24000_48000_{}_lookup69k_residue_embeddings.pt'.format(model))
-# lookup3_embedding_path = os.path.join(working_dir, 'data/embeddings/48000_69605_{}_lookup69k_residue_embeddings.pt'.format(model))
+test_embeddings_path = os.path.join(working_dir, 'data/embeddings/0_219_{}_test219_residue_embeddings.pt'.format(model))
+test_average_embeddings_path = os.path.join(working_dir, 'data/embeddings/0_219_{}_test219_average_embeddings.pt'.format(model))
+lookup1_embedding_path = os.path.join(working_dir, 'data/embeddings/0_24000_{}_lookup69k_residue_embeddings.pt'.format(model))
+lookup2_embedding_path = os.path.join(working_dir, 'data/embeddings/24000_48000_{}_lookup69k_residue_embeddings.pt'.format(model))
+lookup3_embedding_path = os.path.join(working_dir, 'data/embeddings/48000_69605_{}_lookup69k_residue_embeddings.pt'.format(model))
 
-lookup1_embedding_path = os.path.join(working_dir, 'data/embeddings/0_10_{}_lookup69k_residue_embeddings.pt'.format(model))
-lookup2_embedding_path = os.path.join(working_dir, 'data/embeddings/10_20_{}_lookup69k_residue_embeddings.pt'.format(model))
-lookup3_embedding_path = os.path.join(working_dir, 'data/embeddings/20_30_{}_lookup69k_residue_embeddings.pt'.format(model))
 
 
 ### load test sequence embedding
 test_embedding = torch.load(test_embeddings_path, map_location=torch.device('cpu'))[ref_sequence_id]
 ### load lookup sequences embeddings
 lookup_embeddings = Merge(torch.load(lookup1_embedding_path, map_location=torch.device('cpu')), torch.load(lookup2_embedding_path, map_location=torch.device('cpu')), torch.load(lookup3_embedding_path, map_location=torch.device('cpu')) )
-#lookup_avg_embeddings = Merge(torch.load(lookup1_avg_embedding_path, map_location=torch.device('cpu')), torch.load(lookup2_avg_embedding_path, map_location=torch.device('cpu')), torch.load(lookup3_avg_embedding_path, map_location=torch.device('cpu')))
 
 ### assign the preferred similarity matrix method
 compute_similarity_matrix = sm.compute_similarity_matrix
