@@ -1,6 +1,6 @@
 # PISCES analysis
 
-This folder contains the scripts and the data necessary to reproduce the results described in the paragraph 'EBA captures structural similarity in the twilight zone' of: [https://doi.org/10.1101/2022.12.13.520313](https://doi.org/10.1101/2022.12.13.520313)
+This folder contains the scripts and the data necessary to reproduce the results described in the paragraph 'EBA captures structural similarity in the twilight zone' of: [https://doi.org/10.1101/2022.12.13.520313](https://doi.org/10.1101/2022.12.13.520313).
 
 ### Additional modules
 Install the following modules in order to run the notebook: 'EBA_pisces.ipynb'.
