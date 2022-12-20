@@ -292,7 +292,7 @@ def load_extractor(model_name, embedding_type, device=None):
 
         :type model_name: string
         :type embedding_type: string
-        :type device: device object made with torch? conda?
+        :type device: device object
     '''
     
     if model_name == 'ESMb1':
