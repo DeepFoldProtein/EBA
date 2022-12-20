@@ -318,5 +318,4 @@ def load_extractor(model_name, embedding_type, device=None):
 
 
     else:
-        print('Invalide model name, use ESMb1, ESM2 or ProtT5.')
-        return
+        raise RuntimeError('Invalide model name, use ESMb1, ESM2 or ProtT5.')
