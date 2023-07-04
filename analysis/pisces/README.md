@@ -34,3 +34,10 @@ python compute_AD_pisces_pairs.py ESMb1
 The comparison of the predicted similarity scores and the TM scores of the PISCES pairs can be performed with the notebook: 'EBA_pisces.ipynb'.
 
 ![Semantic description of image](./ProtT5_min.png)
+
+
+### Benchmark against TM-vec and pLM-BLAST
+The code to run TM-vec and pLM-BLAST on the same data can be found in [/scripts](https://git.scicore.unibas.ch/schwede/EBA/-/tree/main/analysis/pisces/scripts) as well.
+However, in order to run it, both TM-vec and pLM-BLAST need to be installed. In order to do so, follow: 
+* TM-vec [https://github.com/tymor22/tm-vec](https://github.com/tymor22/tm-vec) 
+* pLM-BLAST [https://github.com/labstructbioinf/pLM-BLAST](https://github.com/labstructbioinf/pLM-BLAST)
