@@ -3,7 +3,6 @@ import numba as nb
 
 MIN_FLOAT64 = np.finfo(np.float64).min
 
-
 @nb.njit(cache=False)
 def _make_dtw_matrix(
     score_matrix: np.ndarray,
@@ -165,3 +164,94 @@ def dtw_align(
     aln_1, aln_2 = _get_dtw_alignment(index, backtrack, n, m)
     return aln_1, aln_2, scores[index]
     #return scores[index]
+
+###############################################
+################LOCAL ALIGNMENT################
+###############################################
+
+@nb.njit
+def unravel_index(idx, shape):
+    row_idx = idx // shape[1]
+    col_idx = idx % shape[1]
+    return row_idx, col_idx
+
+@nb.njit
+def smith_waterman_matrix(score_matrix, gap=0.):
+    rows = score_matrix.shape[0] + 1
+    cols = score_matrix.shape[1] + 1
+    matrix = np.zeros((rows, cols))
+
+    for i in range(1, rows):
+        for j in range(1, cols):
+            # Calculate the score for each possible alignment
+            diagonal_score = matrix[i - 1][j - 1] + score_matrix[i - 1, j - 1]
+            left_score = matrix[i][j - 1] - gap
+            up_score = matrix[i - 1][j] - gap
+            # Take the maximum of the three possible scores
+            matrix[i][j] = max(0, diagonal_score, left_score, up_score)
+    return matrix
+
+@nb.njit
+def smith_waterman_traceback(score_matrix, matrix, gap=0.):
+    i, j = unravel_index(np.argmax(matrix), matrix.shape)
+    max_score = matrix[i, j]
+    if max_score <= 0.:
+        return None
+    max_aln_length = i + j + 1
+    align1 = np.zeros(max_aln_length, dtype=np.int64)
+    align2 = np.zeros(max_aln_length, dtype=np.int64)
+    index = 0
+    first_1, first_2, last_1, last_2 = 0, 0, i, j
+    while i > 0 and j > 0:
+        score = matrix[i, j]
+        diagonal_score = matrix[i - 1, j - 1]
+        left_score = matrix[i, j - 1]
+        up_score = matrix[i - 1, j]
+        if score <= 0.:
+            first_1, first_2 = i, j
+            break
+        elif score == diagonal_score + score_matrix[i - 1, j - 1]:
+            i -= 1
+            j -= 1
+            align1[index] = i
+            align2[index] = j
+            index += 1
+        elif score == left_score - gap:
+            j -= 1
+            align1[index] = -1
+            align2[index] = j
+            index += 1
+        elif score == up_score - gap:
+            i -= 1
+            align1[index] = i
+            align2[index] = -1
+            index += 1
+    if index > 2:
+        return align1[:index][::-1], align2[:index][::-1], max_score, first_1, first_2, last_1, last_2
+    else:
+        return None
+
+@nb.njit
+def smith_waterman(score_matrix, gap=0., recurse=True):
+    matrix = smith_waterman_matrix(score_matrix, gap)
+    best_alignment = smith_waterman_traceback(score_matrix, matrix, gap)
+    alignments = []
+    if best_alignment is not None:
+        aln1, aln2, score, first_1, first_2, last_1, last_2 = best_alignment
+        alignments.append((aln1, aln2, score))
+        if recurse:
+            smith_waterman_recursive(score_matrix[:first_1], 0, 0, alignments, gap)
+            smith_waterman_recursive(score_matrix[last_1:], last_1, 0, alignments, gap)
+    return alignments
+
+
+@nb.njit
+def smith_waterman_recursive(score_matrix, add_1, add_2, alignments, gap=0.):
+    matrix = smith_waterman_matrix(score_matrix, gap)
+    best_alignment = smith_waterman_traceback(score_matrix, matrix, gap)
+    if best_alignment is not None:
+        aln1, aln2, score, first_1, first_2, last_1, last_2 = best_alignment
+        alignments.append((aln1 + add_1, aln2, score))
+        smith_waterman_recursive(score_matrix[:first_1], add_1, 0, alignments, gap)
+        smith_waterman_recursive(score_matrix[last_1:], add_1 + last_1, 0, alignments, gap)
+    return alignments

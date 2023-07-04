@@ -27,3 +27,14 @@ def EBA(similarity_matrix, extensive_output=False, gap_open_penalty=0.0, gap_ext
         return {'EBA_raw': EBA_raw, 'EBA_min': EBA_raw/l_max, 'EBA_max': EBA_raw/l_min}
 
 
+def EBA_local(similarity_matrix, gap_penalty=0.0):
+    """Computes the embedding-based alignment score (EBA) for a pair of sequences.
+
+        :similarity_matrix: matrix containing paiwise similarity scores
+        :param gap_penalty: gap penality for the local alignment
+
+        :type similarity_matrix: pytorch tensor
+        :type gap_penalty: float
+
+    """
+    return alg.smith_waterman(similarity_matrix.cpu().numpy(), gap=gap_penalty)
