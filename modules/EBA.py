@@ -1,4 +1,4 @@
-import alignment as alg
+from . import alignment as alg
 
 def EBA(similarity_matrix, extensive_output=False, gap_open_penalty=0.0, gap_extend_penalty=0.0):
     """Computes the embedding-based alignment score (EBA) for a pair of sequences.
