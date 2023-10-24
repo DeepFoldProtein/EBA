@@ -32,8 +32,6 @@ lookup1_embedding_path = os.path.join(working_dir, 'data/embeddings/0_24000_{}_l
 lookup2_embedding_path = os.path.join(working_dir, 'data/embeddings/24000_48000_{}_lookup69k_residue_embeddings.pt'.format(model))
 lookup3_embedding_path = os.path.join(working_dir, 'data/embeddings/48000_69605_{}_lookup69k_residue_embeddings.pt'.format(model))
 
-
-
 ### load test sequence embedding
 test_embedding = torch.load(test_embeddings_path, map_location=torch.device('cpu'))[ref_sequence_id]
 ### load lookup sequences embeddings

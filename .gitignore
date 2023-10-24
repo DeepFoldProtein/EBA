@@ -1,1 +1,6 @@
 __pycache__
+.ipynb_checkpoints
+venv_eba
+venv_EBA
+eba.egg-info
+tests
