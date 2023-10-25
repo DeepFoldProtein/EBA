@@ -11,30 +11,23 @@ Note: In case of high dimensionality embeddings (such as ESM2), we suggest to ru
 
 
 ## Getting started
-Install the following modules:
+Install eba with:
 ```
-pip install numba
-pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu
-pip install fair-esm
-pip install transformers
-pip install SentencePiece
+python -m pip install --upgrade pip
+pip install -e .
 ```
-If you want to use a GPU, you can follow the instructions at: https://pytorch.org/ in order to install the compatible pytorch version.
 
 ## Example
 
 To run EBA on your own sequences you can use the following code:
 ``` python
-import sys
-sys.path.append('./modules')
-import torch
-import EBA as eba
-import similarity_matrix as sm
-import embedding as emb
+from eba import methods 
+from eba import score_matrices as sm
+from eba import plm_extractor as plm
 
 ### load language model extractor: ProtT5 or ESMb1
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-protT5_ext = emb.load_extractor('ProtT5', 'residue', device=device)
+protT5_ext = plm.load_extractor('ProtT5', 'residue', device=device)
 
 ### sequences example
 seq1 = 'MLIAFEGIDGSGKTTQAKKLYEYLKQKGYFVSLYREPGGTKVGEVLREILLTEELDERTELLLFEASRSKLIEEKIIPDLKRDKVVILDRFVLSTIAYQGYGKGLDVEFIKNLNEFATRGVKPDITLLLDIPVDIALRRLKEKNRFENKEFLEKVRKGFLELAKEEENVVVIDASGEEEEVFKEILRALSGVLRV'
@@ -43,10 +36,11 @@ seq2 = 'RRGALIVLEGVDRAGKSTQSRKLVEALCAAGHRAELLRFPERSTEIGKLLSSYLQKKSDVEDHSVHLLFSAN
 ### extract per-residue embeddings
 emb1 = protT5_ext.extract(seq1)
 emb2 = protT5_ext.extract(seq2)
+print(emb1.shape)
 
 ### compute similarity matrix and EBA score
 similarity_matrix = sm.compute_similarity_matrix(emb1, emb2)
-eba_results = eba.EBA(similarity_matrix)
+eba_results = methods.compute_eba(similarity_matrix)
 ### to return the alignment itself use:
 #eba_results = eba.EBA(similarity_matrix, extensive_output=True)
 
