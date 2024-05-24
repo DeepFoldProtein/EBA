@@ -304,6 +304,7 @@ def load_extractor(model_name, embedding_type, device=None):
 
     if model_name == 'ESM2':
         esm_model, alphabet = esm.pretrained.esm2_t36_3B_UR50D()
+        # esm_model, alphabet = esm.pretrained.esm2_t6_8M_UR50D()
         esm_batch_converter = alphabet.get_batch_converter()
         esm_model.eval()
     
