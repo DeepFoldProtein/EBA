@@ -1,7 +1,7 @@
 [project]
 name = "eba"
 version = "0.0.1"
-requires-python = ">=3.9"
+requires-python = ">=3.9, <3.12"
 dependencies = ["numba==0.56.4",
                 "sentencepiece==0.1.97",
                 "fair-esm==2.0.0",
