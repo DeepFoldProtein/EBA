@@ -1,3 +1,4 @@
+import torch
 from . import alignments as alg
 
 def compute_eba(similarity_matrix, extensive_output=False, gap_open_penalty=0.0, gap_extend_penalty=0.0):
