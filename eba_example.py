@@ -7,11 +7,11 @@ from eba import plm_extractor as plm
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 protT5_ext = plm.load_extractor('ProtT5', 'residue', device=device)
 
-### sequences example
+### sequences example 
 seq1 = 'MLIAFEGIDGSGKTTQAKKLYEYLKQKGYFVSLYREPGGTKVGEVLREILLTEELDERTELLLFEASRSKLIEEKIIPDLKRDKVVILDRFVLSTIAYQGYGKGLDVEFIKNLNEFATRGVKPDITLLLDIPVDIALRRLKEKNRFENKEFLEKVRKGFLELAKEEENVVVIDASGEEEEVFKEILRALSGVLRV'
 seq2 = 'RRGALIVLEGVDRAGKSTQSRKLVEALCAAGHRAELLRFPERSTEIGKLLSSYLQKKSDVEDHSVHLLFSANRWEQVPLIKEKLSQGVTLVVDRYAFSGVAFTGAKENFSLDWCKQPDVGLPKPDLVLFLQLQLADAAKRGAFGHERYENGAFQERALRCFHQLMKDTTLNWKMVDASKSIEAVHEDIRVLSEDAIATATEKPLGELWK'
 
-### extract per-residue embeddings
+### extract per-residue embeddings (if you are using ProstT5, add "<AA2fold> " to the sequences)
 emb1 = protT5_ext.extract(seq1)
 emb2 = protT5_ext.extract(seq2)
 print(emb1.shape)
