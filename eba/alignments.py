@@ -3,7 +3,7 @@ import numba as nb
 
 MIN_FLOAT64 = np.finfo(np.float64).min
 
-@nb.njit(cache=False)
+@nb.njit
 def _make_dtw_matrix(
     score_matrix: np.ndarray,
     gap_open_penalty: float = 0.0,
@@ -78,7 +78,7 @@ def _make_dtw_matrix(
     return matrix, backtrack
 
 
-@nb.njit(cache=False)
+@nb.njit
 def _get_dtw_alignment(start_direction, backtrack: np.ndarray, n1, m1):
     """
     Finds optimal warping path from a backtrack matrix

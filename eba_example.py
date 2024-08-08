@@ -20,7 +20,7 @@ print(emb1.shape)
 similarity_matrix = sm.compute_similarity_matrix(emb1, emb2)
 eba_results = methods.compute_eba(similarity_matrix)
 ### to return the alignment itself use:
-#eba_results = eba.EBA(similarity_matrix, extensive_output=True)
+#eba_results = methods.compute_eba(similarity_matrix, extensive_output=True)
 
 ### show results
 print('EBA raw: ', eba_results['EBA_raw'])

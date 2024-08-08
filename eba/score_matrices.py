@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 from scipy import spatial
 
 def compute_similarity_matrix(embedding1, embedding2, l=1, p=2):
@@ -48,7 +49,7 @@ def compute_similarity_matrix_plain(embedding1, embedding2, l=1, p=2):
 
 
 
-def compute_cosine_similarity_matrix(embedding1, embedding2, l=1, p=2):
+def compute_cosine_similarity_matrix(embedding1, embedding2):
     """ Take as input 2 sequence embeddings (at a residue level) and returns the cosine similarity matrix
         with the signal enhancement based on Z-scores. The signal enhancement seems to be redundant 
         when used with the cosine similarity score, therefore we don't recommend this version.
@@ -84,5 +85,5 @@ def compute_cosine_similarity_matrix_plain(embedding1, embedding2):
         :type embedding2: pytorch tensor
     """
     
-    return torch.tensor(1-spatial.distance.cdist(embedding1, embedding2, 'cosine'))
+    return torch.tensor(1-spatial.distance.cdist(embedding1.cpu().numpy(), embedding2.cpu().numpy(), 'cosine'))
 
