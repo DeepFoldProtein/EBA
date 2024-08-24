@@ -239,12 +239,15 @@ class esm_embeddings(seq_feature_extractor_base):
         """
         return self._device
 
-    def extract(self, seqres):
+    def extract(self, seqres, esm_layer=33):
         """Returns esm embedding as a torch tensor (sent to *device*)
         according to *embedding_type*.
 
         :param seqres: SEQRES to encode
+        :param esm_layer: layer used to extract embeddings
+        
         :type seqres: :class:`str`
+        :type esm_layer: :class:`int`
         """
         data = [('sequence', seqres)]
 
@@ -253,11 +256,10 @@ class esm_embeddings(seq_feature_extractor_base):
         if self._device is not None:
             batch_tokens = batch_tokens.to(self._device)
 
-        # Extract per-residue representations (on CPU)
         with torch.no_grad():
-            results = self._esm_model(batch_tokens, repr_layers=[33], return_contacts=True)
+            results = self._esm_model(batch_tokens, repr_layers=[esm_layer], return_contacts=True)
         
-        token_representations = results["representations"][33]
+        token_representations = results["representations"][esm_layer]
         assert(len(seqres) + 2 == token_representations.shape[1])
 
         if self._embedding_type == 'residue':
