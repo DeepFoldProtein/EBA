@@ -1,4 +1,7 @@
 # Embedding-based alignment (EBA)
+
+**Forked from [schwede/EBA](https://git.scicore.unibas.ch/schwede/EBA)** (SciCore/Uni Basel).
+
 This repository contains the implementation of the EBA method as described in: ["Embedding-based alignment: combining protein language models with dynamic programming alignment to detect structural similarities in the twilight-zone"](https://doi.org/10.1093/bioinformatics/btad786).
 
 Notice that the embedding extraction is independent from the EBA method, and any pLM can be used. However, to facilitate the application we provide a module (plm_extractor.py) that allows the extraction of the per-residue embedding representations for the following pLMs: ProtT5, ESM-b1n and ProstT5.
