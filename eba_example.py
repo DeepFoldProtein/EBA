@@ -1,13 +1,14 @@
 import torch
-from eba import methods 
-from eba import score_matrices as sm
+from eba import methods
 from eba import plm_extractor as plm
+from eba import score_matrices as sm
+
 
 ### load language model extractor: ProtT5 or ESMb1
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 protT5_ext = plm.load_extractor('ProtT5', 'residue', device=device)
 
-### sequences example 
+### sequences example
 seq1 = 'MLIAFEGIDGSGKTTQAKKLYEYLKQKGYFVSLYREPGGTKVGEVLREILLTEELDERTELLLFEASRSKLIEEKIIPDLKRDKVVILDRFVLSTIAYQGYGKGLDVEFIKNLNEFATRGVKPDITLLLDIPVDIALRRLKEKNRFENKEFLEKVRKGFLELAKEEENVVVIDASGEEEEVFKEILRALSGVLRV'
 seq2 = 'RRGALIVLEGVDRAGKSTQSRKLVEALCAAGHRAELLRFPERSTEIGKLLSSYLQKKSDVEDHSVHLLFSANRWEQVPLIKEKLSQGVTLVVDRYAFSGVAFTGAKENFSLDWCKQPDVGLPKPDLVLFLQLQLADAAKRGAFGHERYENGAFQERALRCFHQLMKDTTLNWKMVDASKSIEAVHEDIRVLSEDAIATATEKPLGELWK'
 

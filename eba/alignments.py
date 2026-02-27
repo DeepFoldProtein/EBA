@@ -1,5 +1,6 @@
-import numpy as np
 import numba as nb
+import numpy as np
+
 
 MIN_FLOAT64 = np.finfo(np.float64).min
 

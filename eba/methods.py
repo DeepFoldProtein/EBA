@@ -1,5 +1,7 @@
 import torch
+
 from . import alignments as alg
+
 
 def compute_eba(similarity_matrix, extensive_output=False, gap_open_penalty=0.0, gap_extend_penalty=0.0):
     """Computes the embedding-based alignment score (EBA) for a pair of sequences.
@@ -14,8 +16,8 @@ def compute_eba(similarity_matrix, extensive_output=False, gap_open_penalty=0.0,
         :type gap_extend_penalty: float
 
     """
-    aln_1, aln_2, EBA_raw = alg.dtw_align(similarity_matrix.cpu().numpy(), 
-                                            gap_open_penalty=gap_open_penalty, 
+    aln_1, aln_2, EBA_raw = alg.dtw_align(similarity_matrix.cpu().numpy(),
+                                            gap_open_penalty=gap_open_penalty,
                                             gap_extend_penalty=gap_extend_penalty)
 
     l_min = min(similarity_matrix.shape[0], similarity_matrix.shape[1])

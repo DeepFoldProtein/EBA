@@ -1,6 +1,6 @@
 import torch
-import numpy as np
 from scipy import spatial
+
 
 def compute_similarity_matrix(embedding1, embedding2, l=1, p=2):
     """ Take as input 2 sequence embeddings (at a residue level) and returns the similarity matrix

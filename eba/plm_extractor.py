@@ -1,10 +1,11 @@
-import os
-import torch
 import re
+
 import esm
+import torch
+
 #from transformers import BertModel, BertTokenizer
-from transformers import T5Tokenizer, T5EncoderModel
-from transformers import logging
+from transformers import T5EncoderModel, T5Tokenizer, logging
+
 
 class seq_feature_extractor_base:
     """Base class defining the interface for feature extraction based
@@ -186,7 +187,7 @@ class bert_embeddings(seq_feature_extractor_base):
         elif self._embedding_type == 'avg':
             return torch.mean(embedding[0][1:len(seqres)+1][:], 0)
         else:
-            # this should never happen as we check for valid embedding type in 
+            # this should never happen as we check for valid embedding type in
             # constructor
             raise RuntimeError('Invalid embedding type')
 
@@ -275,7 +276,7 @@ class esm_embeddings(seq_feature_extractor_base):
             return sequence_representations[0]
         
         else:
-            # this should never happen as we check for valid embedding type in 
+            # this should never happen as we check for valid embedding type in
             # constructor
             raise RuntimeError('Invalid embedding type')
 
